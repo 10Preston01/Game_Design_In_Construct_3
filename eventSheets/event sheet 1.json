@@ -1,0 +1,268 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "Score",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 397996480772398
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 839591878677310
+				}
+			],
+			"actions": [
+				{
+					"id": "set-angle-toward-position",
+					"objectClass": "Player",
+					"sid": 784310392741043,
+					"parameters": {
+						"x": "Mouse.X",
+						"y": "Mouse.Y"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "Text",
+					"sid": 873935182308105,
+					"parameters": {
+						"text": "\"Score: \" & Score"
+					}
+				}
+			],
+			"sid": 550981418677302
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-click",
+					"objectClass": "Mouse",
+					"sid": 943433541499643,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "spawn-another-object",
+					"objectClass": "Player",
+					"sid": 533763909539219,
+					"parameters": {
+						"object": "Bullet",
+						"layer": "0",
+						"image-point": "1",
+						"create-hierarchy": false
+					}
+				}
+			],
+			"sid": 551228900938001
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Bullet",
+					"sid": 334497088344129,
+					"parameters": {
+						"object": "Monster"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "Monster",
+					"sid": 666341602238273,
+					"parameters": {
+						"instance-variable": "Health",
+						"value": "1"
+					}
+				},
+				{
+					"id": "spawn-another-object",
+					"objectClass": "Bullet",
+					"sid": 240165548721180,
+					"parameters": {
+						"object": "Explosion",
+						"layer": "0",
+						"image-point": "0",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Bullet",
+					"sid": 638710963843092
+				}
+			],
+			"sid": 678970799258729
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 658710501910709
+				}
+			],
+			"actions": [
+				{
+					"id": "set-angle",
+					"objectClass": "Monster",
+					"sid": 447757681633685,
+					"parameters": {
+						"angle": "random(360)"
+					}
+				}
+			],
+			"sid": 631846261676072
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-outside-layout",
+					"objectClass": "Monster",
+					"sid": 458592830013665
+				}
+			],
+			"actions": [
+				{
+					"id": "set-angle-toward-position",
+					"objectClass": "Monster",
+					"sid": 160557634317588,
+					"parameters": {
+						"x": "Player.X",
+						"y": "Player.Y"
+					}
+				}
+			],
+			"sid": 721631279019727
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Monster",
+					"sid": 825508725347545,
+					"parameters": {
+						"instance-variable": "Health",
+						"comparison": 3,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "spawn-another-object",
+					"objectClass": "Monster",
+					"sid": 687900016865854,
+					"parameters": {
+						"object": "Explosion",
+						"layer": "0",
+						"image-point": "0",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Monster",
+					"sid": 421320650981082
+				},
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 688724345484743,
+					"parameters": {
+						"variable": "Score",
+						"value": "1"
+					}
+				},
+				{
+					"id": "add-to-instvar",
+					"objectClass": "Monster",
+					"sid": 384504820485602,
+					"parameters": {
+						"instance-variable": "Speed_Increase",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 546435828451889
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 249231581366737,
+					"parameters": {
+						"interval-seconds": "3.0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 670689254116446,
+					"parameters": {
+						"object-to-create": "Monster",
+						"layer": "0",
+						"x": "LayoutWidth + 100",
+						"y": "random(LayoutHeight)",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				}
+			],
+			"sid": 110039802821294
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Monster",
+					"sid": 374621390104727,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Player",
+					"sid": 896060711329035
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "Text2",
+					"sid": 753847601385887,
+					"parameters": {
+						"visibility": "visible"
+					}
+				}
+			],
+			"sid": 753844273314398
+		}
+	],
+	"sid": 461974974856043
+}
