@@ -36,6 +36,16 @@
 			"sid": 1620992456180981
 		},
 		{
+			"eventType": "variable",
+			"name": "Seconds_Per_Powerup",
+			"type": "number",
+			"initialValue": "3.5",
+			"comment": "used to time power up spawns",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 254341307781768
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Start",
@@ -638,6 +648,71 @@
 				{
 					"eventType": "comment",
 					"text": "At regular intervals, create new food powerups for the bird to collect. \n\nThese may be extra score, invincibility, slow time, etc. "
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 425061324159459,
+							"parameters": {
+								"interval-seconds": "Seconds_Per_Powerup"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 449808669471904,
+							"parameters": {
+								"object-to-create": "food_sprite",
+								"layer": "0",
+								"x": "375",
+								"y": "random(50,390)",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "food_sprite",
+							"sid": 633012921270611,
+							"parameters": {
+								"animation": "\"Banana\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 371443617364810,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-animation-playing",
+									"objectClass": "food_sprite",
+									"sid": 444662382536171,
+									"parameters": {
+										"animation": "\"Banana\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "food_sprite",
+									"sid": 307500543705302,
+									"parameters": {
+										"instance-variable": "power_up_type",
+										"value": "\"invincible\""
+									}
+								}
+							],
+							"sid": 651541338356391
+						}
+					]
 				}
 			],
 			"sid": 298653776108631,

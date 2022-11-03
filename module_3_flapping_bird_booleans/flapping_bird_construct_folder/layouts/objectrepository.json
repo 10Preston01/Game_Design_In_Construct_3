@@ -5,7 +5,40 @@
 			"name": "Layer 0",
 			"overriden": 0,
 			"subLayers": [],
-			"instances": [],
+			"instances": [
+				{
+					"type": "food_sprite",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Apple",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 13,
+					"instanceVariables": {
+						"is_eaten": false,
+						"power_up_type": ""
+					},
+					"behaviors": {},
+					"world": {
+						"x": 164,
+						"y": 137,
+						"width": 28.49561369755001,
+						"height": 28.49561369755001,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				}
+			],
 			"sid": 478318269778710,
 			"effectTypes": [],
 			"isInitiallyVisible": true,

@@ -8,6 +8,7 @@
 			"name": "Scored",
 			"type": "boolean",
 			"desc": "",
+			"show": true,
 			"sid": 594544762936064
 		}
 	],
