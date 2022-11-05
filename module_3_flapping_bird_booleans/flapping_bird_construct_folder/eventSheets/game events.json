@@ -464,6 +464,14 @@
 							"parameters": {
 								"x": "TiledBackground.X -SCROLLSPEED * dt"
 							}
+						},
+						{
+							"id": "set-x",
+							"objectClass": "food_sprite",
+							"sid": 715971595374588,
+							"parameters": {
+								"x": "food_sprite.X -SCROLLSPEED * dt"
+							}
 						}
 					],
 					"sid": 1385689931601852
@@ -515,6 +523,28 @@
 						}
 					],
 					"sid": 7423873857133321
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-x",
+							"objectClass": "food_sprite",
+							"sid": 432629670919785,
+							"parameters": {
+								"comparison": 2,
+								"x-co-ordinate": "-50"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "food_sprite",
+							"sid": 845747189155480
+						}
+					],
+					"sid": 437450135697081
 				}
 			],
 			"sid": 2217707378612145,
@@ -542,92 +572,135 @@
 						{
 							"id": "is-overlapping-another-object",
 							"objectClass": "Bird",
-							"sid": 317273256630305,
+							"sid": 732925497421636,
 							"parameters": {
-								"object": "TiledBackground2"
+								"object": "food_sprite"
 							}
 						}
 					],
 					"actions": [
 						{
-							"id": "go-to-layout-by-name",
-							"objectClass": "System",
-							"sid": 225187251861687,
+							"id": "set-boolean-instvar",
+							"objectClass": "food_sprite",
+							"sid": 589421926304566,
 							"parameters": {
-								"layout": "\"Start\""
+								"instance-variable": "is_eaten",
+								"value": "true"
 							}
 						}
 					],
-					"sid": 273066905718133
+					"sid": 737480116346539
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-overlapping-another-object",
+							"id": "is-boolean-instance-variable-set",
 							"objectClass": "Bird",
-							"sid": 111816308935546,
+							"sid": 365137936063810,
 							"parameters": {
-								"object": "TopPipe"
-							}
+								"instance-variable": "invincible"
+							},
+							"isInverted": true
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 778899188938592,
+					"children": [
 						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 845438098622413,
-							"parameters": {
-								"layout": "Start"
-							}
-						}
-					],
-					"sid": 150552530232081
-				},
-				{
-					"eventType": "block",
-					"conditions": [
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "Bird",
+									"sid": 489885375156655,
+									"parameters": {
+										"object": "TiledBackground2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout-by-name",
+									"objectClass": "System",
+									"sid": 471792237722840,
+									"parameters": {
+										"layout": "\"Start\""
+									}
+								}
+							],
+							"sid": 432938966986596
+						},
 						{
-							"id": "is-overlapping-another-object",
-							"objectClass": "Bird",
-							"sid": 491598152787618,
-							"parameters": {
-								"object": "BottomPipe"
-							}
-						}
-					],
-					"actions": [
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "Bird",
+									"sid": 924323734170699,
+									"parameters": {
+										"object": "TopPipe"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 265724387260225,
+									"parameters": {
+										"layout": "Start"
+									}
+								}
+							],
+							"sid": 221673318647207
+						},
 						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 489438459372044,
-							"parameters": {
-								"layout": "Start"
-							}
-						}
-					],
-					"sid": 882513035600699
-				},
-				{
-					"eventType": "block",
-					"conditions": [
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "Bird",
+									"sid": 300533776086978,
+									"parameters": {
+										"object": "BottomPipe"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 899326695192082,
+									"parameters": {
+										"layout": "Start"
+									}
+								}
+							],
+							"sid": 356284366297681
+						},
 						{
-							"id": "is-outside-layout",
-							"objectClass": "Bird",
-							"sid": 396924802793812
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-outside-layout",
+									"objectClass": "Bird",
+									"sid": 579336068124343
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 897064070495453,
+									"parameters": {
+										"layout": "Start"
+									}
+								}
+							],
+							"sid": 867672140442866
 						}
-					],
-					"actions": [
-						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 737916881736218,
-							"parameters": {
-								"layout": "Start"
-							}
-						}
-					],
-					"sid": 430171814809309
+					]
 				}
 			],
 			"sid": 991508571897493,
@@ -713,6 +786,83 @@
 							"sid": 651541338356391
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "food_sprite",
+							"sid": 731944393877007,
+							"parameters": {
+								"instance-variable": "power_up_type",
+								"comparison": 0,
+								"value": "\"invincible\""
+							}
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "food_sprite",
+							"sid": 671630229378998,
+							"parameters": {
+								"instance-variable": "is_eaten"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "start-timer",
+							"objectClass": "Bird",
+							"sid": 583753938997598,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "3",
+								"type": "once",
+								"tag": "\"invincible\""
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Bird",
+							"sid": 532085673644059,
+							"parameters": {
+								"instance-variable": "invincible",
+								"value": "true"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "food_sprite",
+							"sid": 415868968240918
+						}
+					],
+					"sid": 202925420959669
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "Bird",
+							"sid": 242155778287374,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"invincible\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Bird",
+							"sid": 144545934589523,
+							"parameters": {
+								"instance-variable": "invincible",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 523915067434321
 				}
 			],
 			"sid": 298653776108631,

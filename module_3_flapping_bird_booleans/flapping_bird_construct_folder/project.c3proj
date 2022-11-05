@@ -69,6 +69,14 @@
 			"author": "Scirra",
 			"version": "r317",
 			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Timer",
+			"name": "Timer",
+			"author": "Scirra",
+			"version": "r317",
+			"bundled": false
 		}
 	],
 	"uniqueId": "o25lx2z8x3w",
