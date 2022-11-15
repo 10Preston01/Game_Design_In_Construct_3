@@ -136,6 +136,36 @@
 			"sid": 629497235077723
 		},
 		{
+			"eventType": "variable",
+			"name": "AstroidSpawnPerSecond",
+			"type": "number",
+			"initialValue": "2",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 286900874422123
+		},
+		{
+			"eventType": "variable",
+			"name": "AsteroidCollisonMargin",
+			"type": "number",
+			"initialValue": "2",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 776442616951802
+		},
+		{
+			"eventType": "variable",
+			"name": "Health",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 135493734462145
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "System",
@@ -192,6 +222,14 @@
 							"sid": 384221456161058,
 							"parameters": {
 								"z": "Self.ZElevation+Self.Speed*Delta"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "Text2",
+							"sid": 332932541726611,
+							"parameters": {
+								"text": "\"Health: \" & Health"
 							}
 						}
 					],
@@ -1580,6 +1618,118 @@
 					"conditions": [],
 					"actions": [],
 					"sid": 219023901183184
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 816790904320081,
+							"parameters": {
+								"interval-seconds": "AstroidSpawnPerSecond"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 340839313801606,
+							"parameters": {
+								"object-to-create": "Asteroid",
+								"layer": "1",
+								"x": "random(50,270)",
+								"y": "random(50,130)",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Asteroid",
+							"sid": 397416565980315,
+							"parameters": {
+								"instance-variable": "Speed",
+								"value": "random(0.4,2)"
+							}
+						},
+						{
+							"id": "set-z-elevation",
+							"objectClass": "Asteroid",
+							"sid": 578792896032218,
+							"parameters": {
+								"z": "-100"
+							}
+						}
+					],
+					"sid": 545559774483590
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 712722057750004,
+							"parameters": {
+								"object": "Asteroid"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 241856860457317,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "Asteroid",
+									"sid": 346627579210022,
+									"parameters": {
+										"object": "Ship"
+									}
+								},
+								{
+									"id": "is-between-values",
+									"objectClass": "System",
+									"sid": 280800733982605,
+									"parameters": {
+										"value": "Ship.ZElevation",
+										"lower-bound": "Asteroid.ZElevation-AsteroidCollisonMargin",
+										"upper-bound": "Asteroid.ZElevation+AsteroidCollisonMargin"
+									}
+								},
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 628519355778376
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "Ship",
+									"sid": 638541588021715,
+									"parameters": {
+										"animation": "\"collision\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "subtract-from-eventvar",
+									"objectClass": "System",
+									"sid": 226806597919791,
+									"parameters": {
+										"variable": "Health",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 320644085038682
+						}
+					]
 				}
 			],
 			"sid": 703677530361462,
@@ -1589,6 +1739,29 @@
 				0,
 				1
 			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 381649355331277,
+					"parameters": {
+						"variable": "Health",
+						"comparison": 2,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Ship",
+					"sid": 424331874566101
+				}
+			],
+			"sid": 246882408376962
 		}
 	],
 	"sid": 709657994451558

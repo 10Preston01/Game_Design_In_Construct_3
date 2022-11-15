@@ -3,14 +3,7 @@
 	"plugin-id": "Sprite",
 	"sid": 722056890643197,
 	"isGlobal": false,
-	"instanceVariables": [
-		{
-			"name": "Health",
-			"type": "number",
-			"desc": "",
-			"sid": 391935741726921
-		}
-	],
+	"instanceVariables": [],
 	"behaviorTypes": [
 		{
 			"behaviorId": "Tween",
@@ -39,7 +32,7 @@
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
-						"exportFormat": "png",
+						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"imageSpriteId": 9863283,
 						"collisionPoly": {
@@ -96,7 +89,7 @@
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
-						"exportFormat": "png",
+						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"imageSpriteId": 548498,
 						"collisionPoly": {
@@ -142,7 +135,7 @@
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
-						"exportFormat": "png",
+						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"imageSpriteId": 4996684,
 						"collisionPoly": {

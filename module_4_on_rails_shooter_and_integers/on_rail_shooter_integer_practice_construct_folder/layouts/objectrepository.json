@@ -327,7 +327,11 @@
 						"Speed": 1,
 						"Health": 5
 					},
-					"behaviors": {},
+					"behaviors": {
+						"Timer": {
+							"properties": {}
+						}
+					},
 					"world": {
 						"x": 48,
 						"y": 88,
