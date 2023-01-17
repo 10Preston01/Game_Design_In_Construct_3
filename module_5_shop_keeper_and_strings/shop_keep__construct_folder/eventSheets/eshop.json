@@ -32,6 +32,7 @@
 						"audio-file": "JojosHut",
 						"loop": "looping",
 						"volume": "0",
+						"stereo-pan": "0",
 						"tag-optional": "\"Jojos Hut\""
 					}
 				},
